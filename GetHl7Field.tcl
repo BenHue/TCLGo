@@ -41,5 +41,5 @@ foreach segment $segList {
     }
 }
 
-puts "PID: $PIDSeg"
+puts "Found PID: $PIDSeg"
 
