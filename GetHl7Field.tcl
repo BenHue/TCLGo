@@ -41,5 +41,11 @@ foreach segment $segList {
     }
 }
 
-puts "Found PID: $PIDSeg"
+# Variable PIDSeg now contains the PID segment. Next we need to split into
+# fields (split by |).
+set PIDFld [split $PIDSeg $fldSep]
+
+puts "PID Fields: $PIDFld"
+
+Here is an error
 
