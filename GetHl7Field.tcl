@@ -41,11 +41,37 @@ foreach segment $segList {
     }
 }
 
-# Variable PIDSeg now contains the PID segment. Next we need to split into
-# fields (split by |).
-set PIDFld [split $PIDSeg $fldSep]
+# We have the PID segment now lets break it down by sfields
+set PIDFlds [split $PIDSeg $fldSep]
+puts "PIDFlds: $PIDFlds"
 
-puts "PID Fields: $PIDFld"
+# Were after the PID:3 field
+# We have to keep in mind that the seg name PID is in position 0
+set PID_3 [lindex $PIDFlds 3]
+puts "PID_3: $PID_3"
 
-Here is an error
+# Now we need PID:3:1 so lets split PID_3
+set PID_3sFlds [split $PID_3 $subSep]
+puts "PID_3sFlds: $PID_3sFlds"
+
+# Finally we reach the MRN in PID:3:1
+set PID_3_1 [lindex $PID_3sFlds 0]
+puts "PID_3_1: $PID_3_1"
+
+# Ok lets conver it to a 12 char value with pre-pended zeros
+
+# First lets get the length
+set length [string length $PID_3_1]
+
+# Either truncate or prepend to form 12 digit character
+if {$length > 12} {
+    set newPID31 [string range $PID_3_1 [expr {$length - 12}] end]
+} else {
+    set newPID31 [string repeat "0" [expr {12 - $length}]]$PID_3_1
+}
+
+
+
+
+
 
