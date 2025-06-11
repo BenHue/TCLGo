@@ -60,6 +60,9 @@ puts "PID_3_1: $PID_3_1"
 
 # Ok lets conver it to a 12 char value with pre-pended zeros
 
+
+ # Ok lets conver it to a 12 char value with pre-pended zeros
+
 # First lets get the length
 set length [string length $PID_3_1]
 
@@ -70,8 +73,14 @@ if {$length > 12} {
     set newPID31 [string repeat "0" [expr {12 - $length}]]$PID_3_1
 }
 
+puts "New PID: $newPID31"
 
+# ok lets put everything back together again
 
+set PID_3sFlds [lreplace $PID_3sFlds 0 0 $newPID31]
 
+puts "Replaced PID_3_flds: $PID_3sFlds"
 
+set PID_3_1 [join $PID_3sFlds $subSep]
 
+puts "PID_3_1: $PID_3_1"
